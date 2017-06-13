@@ -29,4 +29,13 @@ export default class Shape {
         context.lineTo(currentPosition.x, currentPosition.y);
         this._drawLine(context, path)
     }
+
+    moveBy(vector) {
+        this.path = this.path.map(function(point) {
+            point.x += vector.x;
+            point.y += vector.y;
+
+            return point;
+        });
+    }
 }
