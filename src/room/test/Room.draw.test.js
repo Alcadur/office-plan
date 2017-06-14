@@ -1,5 +1,4 @@
-import Room from './Room';
-import * as helpers from '../testHelpers'
+import beforeEachHelper from './beforeEachHelper';
 
 describe('Room', function() {
     let room;
@@ -7,16 +6,7 @@ describe('Room', function() {
     let canvasContext;
 
     beforeEach(function() {
-        shapeStub = sinon.stub(helpers.getShapeMock());
-
-        canvasContext = sinon.stub(helpers.getCanvasContext());
-        room = new Room(shapeStub);
-    });
-
-    describe('constructor', function() {
-        it('should bind new shape instance to shape property', function() {
-            expect(room.shape).to.be.equal(shapeStub);
-        });
+        ({ room, shapeStub, canvasContext } = beforeEachHelper());
     });
 
     describe('draw', function() {
@@ -58,40 +48,6 @@ describe('Room', function() {
 
         it('should return room', function() {
             const result = room.draw(canvasContext);
-
-            expect(result).to.be.equal(room);
-        });
-    });
-
-    describe('addPoint', function() {
-        it('should add point in shape', function() {
-            const X = 3;
-            const Y = 5;
-
-            room.addPoint(X, Y);
-
-            expect(shapeStub.addPoint).to.have.been.calledWith(X, Y);
-        });
-
-        it('should return room', function() {
-            const result = room.addPoint(0, 0);
-
-            expect(result).to.be.equal(room);
-        });
-    });
-
-    describe('moveBy', function() {
-        it('should shape calculate new points values', function() {
-            const X = 4;
-            const Y = 6;
-
-            room.moveBy(X, Y);
-
-            expect(shapeStub.moveBy).to.have.been.calledWith({ x: X, y: Y });
-        });
-
-        it('should return room', function() {
-            const result = room.moveBy(0, 0);
 
             expect(result).to.be.equal(room);
         });
