@@ -1,22 +1,20 @@
-import Shape from '../Shape';
+import beforeEachHelper from './beforeEachHelper';
+import * as statics from './static';
 
 describe('Shape', function() {
-    const POINT_1 = { x: 2, y: 2 };
-    const POINT_2 = { x: 5, y: 5 };
-    const POINT_3 = { x: 2, y: 5 };
     let shape;
 
     beforeEach(function() {
-        shape = new Shape();
+        ({ shape } = beforeEachHelper());
     });
 
     describe('addPoint', function() {
         it('should add shape path points and return shape', function() {
-            shape.addPoint(POINT_1.x, POINT_1.y)
-                 .addPoint(POINT_2.x, POINT_2.y)
-                 .addPoint(POINT_3.x, POINT_3.y);
+            shape.addPoint(statics.POINT_1.x, statics.POINT_1.y)
+                 .addPoint(statics.POINT_2.x, statics.POINT_2.y)
+                 .addPoint(statics.POINT_3.x, statics.POINT_3.y);
 
-            expect(shape.path).to.be.eql([POINT_1, POINT_2, POINT_3])
+            expect(shape.path).to.be.eql([statics.POINT_1, statics.POINT_2, statics.POINT_3])
         });
     });
 });
