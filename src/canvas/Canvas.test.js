@@ -1,4 +1,5 @@
 import Canvas from './Canvas';
+import * as helpers from '../testHelpers';
 
 describe('Canvas', function() {
     const NODE_ID = 'my-canvas';
@@ -86,6 +87,12 @@ describe('Canvas', function() {
 
             expect(function() { canvas.addElement(newObj); }).to.have.throw('Duplicated ID');
         });
+
+        it('should return canvas object', function() {
+            const result = canvas.addElement({});
+
+            expect(result).to.be.equal(canvas);
+        })
     });
 
     describe('findObjByCoordinates', function() {
@@ -130,47 +137,47 @@ describe('Canvas', function() {
         }
     });
 
-    describe('drawPath', function() {
-        const START = { x: 4, y: 10 };
-        const END = { x: 10, y: 2 };
-
+    describe('draw', function() {
         beforeEach(function() {
-            sinon.stub(canvas.context);
+            canvas.context = sinon.stub(helpers.getCanvasContext());
         });
 
-        afterEach(function() {
-            canvas.context.restore();
+        it('should clear draw area before draw elements', function() {
+            canvas.draw();
+
+            expect(canvas.context.clearRect).to.have.been.calledWith(0, 0, canvas.node.width, canvas.node.height);
         });
 
-        it('should begin context path and move to start position', function() {
-            canvas.drawPath(START, END);
+        it('should render each element in elements array', function() {
+            const obj1 = helpers.drawableObjectFactory();
+            const obj2 = helpers.drawableObjectFactory();
+            const obj3 = helpers.drawableObjectFactory();
+            canvas.elements = [obj1, obj2, obj3];
 
-            expect(canvas.context.beginPath).to.have.been.called;
-            expect(canvas.context.moveTo).to.have.been.calledWith(START.x, START.y);
+            canvas.draw();
+
+            expect(obj1.draw).to.have.been.calledWith(canvas.context);
+            expect(obj2.draw).to.have.been.calledWith(canvas.context);
+            expect(obj3.draw).to.have.been.calledWith(canvas.context);
         });
 
-        it('should draw line to [end.x, start.y]', function() {
-            canvas.drawPath(START, END);
+        it('should render each element in static elements array', function() {
+            const obj1 = helpers.drawableObjectFactory();
+            const obj2 = helpers.drawableObjectFactory();
+            const obj3 = helpers.drawableObjectFactory();
+            canvas.staticElements = [obj1, obj2, obj3];
 
-            expect(canvas.context.lineTo).to.have.been.calledWith(END.x, START.y);
+            canvas.draw();
+
+            expect(obj1.draw).to.have.been.calledWith(canvas.context);
+            expect(obj2.draw).to.have.been.calledWith(canvas.context);
+            expect(obj3.draw).to.have.been.calledWith(canvas.context);
         });
 
-        it('should draw line to [end.x, end.y]', function() {
-            canvas.drawPath(START, END);
+        it('should return canvas object', function() {
+            const result = canvas.draw();
 
-            expect(canvas.context.lineTo).to.have.been.calledWith(END.x, END.y);
-        });
-
-        it('should draw line to [start.x, end.y]', function() {
-            canvas.drawPath(START, END);
-
-            expect(canvas.context.lineTo).to.have.been.calledWith(START.x, END.y);
-        });
-
-        it('should close context path', function() {
-            canvas.drawPath(START, END);
-
-            expect(canvas.context.closePath).to.have.been.called;
+            expect(result).to.be.equal(canvas);
         });
     });
 
@@ -186,6 +193,12 @@ describe('Canvas', function() {
 
             expect(canvas.node.width).to.be.eql(INNER_WIDTH);
             expect(canvas.node.height).to.be.eql(INNER_HEIGHT);
+        });
+
+        it('should return canvas object', function() {
+            const result = canvas.fitToWindow();
+
+            expect(result).to.be.equal(canvas);
         });
     });
 

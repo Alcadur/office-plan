@@ -1,3 +1,5 @@
+import sinon from 'sinon';
+
 export function getCanvasContext() {
     return {
         beginPath: function() {},
@@ -6,6 +8,7 @@ export function getCanvasContext() {
         fill: function() {},
         stroke: function() {},
         closePath: function() {},
+        clearRect: function() {}
     }
 }
 
@@ -15,4 +18,10 @@ export function getShapeMock() {
         moveBy: function() {},
         addPoint: function() {}
     }
+}
+
+export function drawableObjectFactory() {
+    return {
+        draw: sinon.stub()
+    };
 }

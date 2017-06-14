@@ -1,5 +1,8 @@
+let nextId = 1;
+
 export default class Room {
     constructor(shape) {
+        this.id = nextId++;
         this.lineWidth = 5;
         this.fillColor = '#929292';
         this.strokeColor = '#ffffff';

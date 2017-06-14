@@ -26,6 +26,8 @@ export default class Canvas {
 
     addElement(element) {
         this._addElementTo(element, this.elements);
+
+        return this;
     }
 
     findObjByCoordinates(x, y) {
@@ -40,32 +42,24 @@ export default class Canvas {
         }, { zIndex: -1 });
     }
 
-    drow() {
-        this.elements.forEach(function(element) {
+    draw() {
+        this.context.clearRect(0, 0, this.node.width, this.node.height);
 
+        this.elements.forEach((element) => {
+            element.draw(this.context);
         });
 
-        this.staticElements.forEach(function(element) {
-
+        this.staticElements.forEach((element) => {
+            element.draw(this.context);
         });
-    }
 
-    drawPath(start, end) {
-        this.context.beginPath();
-        this.context.lineWidth = .5;
-        this.context.moveTo(start.x, start.y);
-        this.context.lineTo(end.x, start.y);
-        this.context.lineTo(end.x, end.y);
-        this.context.lineTo(start.x, end.y);
-        this.context.closePath();
-
-        //no test case
-        this.context.strokeStyle = '#ffffff';
-        this.context.stroke();
+        return this;
     }
 
     fitToWindow() {
         this.node.width = window.innerWidth;
         this.node.height = window.innerHeight;
+
+        return this;
     }
 }
