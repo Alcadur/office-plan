@@ -1,5 +1,6 @@
 import Canvas from './canvas/Canvas';
-import roomfactory from './room/roomFactory';
+import roomFactory from './room/roomFactory';
+import selectedService from './selectService/selectService';
 
 const HALF_START_WIDTH = 100;
 const HALF_START_HEIGHT = 50;
@@ -12,16 +13,30 @@ const P4 = { x: HALF_WINDOW_WIDTH - HALF_START_WIDTH, y: HALF_WINDOW_HEIGHT - HA
 const canvas = new Canvas('#plan');
 canvas.fitToWindow();
 
+selectedService.setup(canvas.context);
 
-canvas.addElement(roomfactory()
+const firstRoom = roomFactory()
         .addPoint(P1.x, P1.y)
         .addPoint(P2.x, P2.y)
         .addPoint(P3.x, P3.y)
-        .addPoint(P4.x, P4.y))
+        .addPoint(P4.x, P4.y);
+
+canvas.addElement(firstRoom)
+      .addElement(roomFactory()
+      .addPoint(10, 10)
+      .addPoint(100, 10)
+      .addPoint(100, 100)
+      .addPoint(10, 100))
     .draw();
 
+//canvas.node.addEventListener('mousedown', function(event) {
+//    console.log(event);
+//});
 
+canvas.node.addEventListener('click', function(event) {
+    canvas.draw();
+    const selectedElement = canvas.findObjByCoordinates(event.layerX, event.layerY);
 
-canvas.node.addEventListener('mousedown', function(event) {
-    console.log(event);
+    selectedService.selectedElement = selectedElement;
+    selectedService.draw();
 });

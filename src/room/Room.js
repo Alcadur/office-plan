@@ -22,6 +22,10 @@ export default class Room {
         return this;
     }
 
+    drawShape(context) {
+        this.shape.draw(context);
+    }
+
     addPoint(x, y) {
         this.shape.addPoint(x, y);
         return this;

@@ -1,3 +1,4 @@
+
 import beforeEachHelper from './beforeEachHelper';
 
 describe('Room', function() {

@@ -8,7 +8,8 @@ export function getCanvasContext() {
         fill: function() {},
         stroke: function() {},
         closePath: function() {},
-        clearRect: function() {}
+        clearRect: function() {},
+        isPointInPath: function() {}
     }
 }
 
@@ -22,6 +23,7 @@ export function getShapeMock() {
 
 export function drawableObjectFactory() {
     return {
-        draw: sinon.stub()
+        draw: sinon.stub(),
+        drawShape: sinon.stub()
     };
 }

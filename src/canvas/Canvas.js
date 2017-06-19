@@ -31,8 +31,9 @@ export default class Canvas {
     }
 
     findObjByCoordinates(x, y) {
-        return this.elements.filter(function(element) {
-           return element.start.x < x && element.start.y > y && element.end.x > x && element.end.y < y;
+        return this.elements.filter((element) => {
+            element.drawShape(this.context);
+            return this.context.isPointInPath(x, y);
         }).reduce(function(previousElement, currentElement){
             if(previousElement.zIndex > currentElement.zIndex) {
                 return previousElement;
