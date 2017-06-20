@@ -3,7 +3,7 @@ export default {
     strokeColor: '#ffc601',
     fillColor: '#ad7e01',
     selectedElement: null,
-    selectElement: function (element) {
+    selectElement (element) {
         this.selectedElement = element;
 
         if(!element) {
@@ -18,6 +18,9 @@ export default {
 
         this.context.fillStyle = this.fillColor;
         this.context.fill();
+    },
+    drawAddButtons() {
+
     },
     setup(context) {
         this.context = context;
