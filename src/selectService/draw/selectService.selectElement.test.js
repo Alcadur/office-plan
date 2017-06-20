@@ -60,5 +60,14 @@ describe('selectService', function() {
 
             expect(canvasContext.lineWidth).to.be.equal(FAKE_LINE_WIDTH);
         });
+
+        it('should do nothing when selected element will have \'zIndex\' set to -1', function() {
+            const FAKE_LINE_WIDTH = 'no width!!!';
+            canvasContext.lineWidth = FAKE_LINE_WIDTH;
+
+            selectService.selectElement({ zIndex: -1 });
+
+            expect(canvasContext.lineWidth).to.be.equal(FAKE_LINE_WIDTH);
+        });
     });
 });

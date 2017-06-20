@@ -6,7 +6,7 @@ export default {
     selectElement (element) {
         this.selectedElement = element;
 
-        if(!element) {
+        if(!element || element.zIndex === -1) {
             return;
         }
 
