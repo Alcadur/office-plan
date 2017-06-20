@@ -3,14 +3,16 @@ export default {
     strokeColor: '#ffc601',
     fillColor: '#ad7e01',
     selectedElement: null,
-    draw: function () {
-        if(!this.selectedElement) {
+    selectElement: function (element) {
+        this.selectedElement = element;
+
+        if(!element) {
             return;
         }
 
-        this.selectedElement.drawShape(this.context);
+        element.drawShape(this.context);
 
-        this.context.lineWidth = this.selectedElement.lineWidth;
+        this.context.lineWidth = element.lineWidth;
         this.context.strokeStyle = this.strokeColor;
         this.context.stroke();
 
