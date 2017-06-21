@@ -57,6 +57,14 @@ export default class Canvas {
         return this;
     }
 
+    removeElement(elementToRemove) {
+        this.elements = this.elements.filter(function(currentElement) {
+            return currentElement !== elementToRemove;
+        });
+
+        return this;
+    }
+
     fitToWindow() {
         this.node.width = window.innerWidth;
         this.node.height = window.innerHeight;
