@@ -1,5 +1,4 @@
 export default class Shape {
-
     constructor() {
         this.path = [];
     }
@@ -37,5 +36,9 @@ export default class Shape {
 
             return point;
         });
+    }
+
+    get(index) {
+        return this.path[index];
     }
 }
