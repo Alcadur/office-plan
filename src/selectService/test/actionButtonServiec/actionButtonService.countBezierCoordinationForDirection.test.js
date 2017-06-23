@@ -7,6 +7,21 @@ describe('actionButtonService', function() {
 
     beforeEach(function() {
         ({ actionButtonService, startPoint } = beforeEachHelper());
+
+        sinon.stub(actionButtonService, 'objectToArray').returns([
+            'topLeft',
+            'topRight',
+            'rightTop',
+            'rightBottom',
+            'bottomLeft',
+            'bottomRight',
+            'leftTop',
+            'leftBottom'
+        ]);
+    });
+
+    afterEach(function() {
+        actionButtonService.objectToArray.restore();
     });
 
     describe('countBezierCoordination', function() {

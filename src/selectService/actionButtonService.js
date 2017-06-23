@@ -176,7 +176,6 @@ export default {
             }
         };
     },
-    // TODO: write test case
     objectToArray(object) {
         return Object.keys(object).map(function(key) {
             return object[key]
