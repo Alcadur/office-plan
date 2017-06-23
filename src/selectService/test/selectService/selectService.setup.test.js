@@ -1,4 +1,4 @@
-import _selectService from '../selectService'
+import _selectService from '../../selectService'
 
 describe('selectService', function() {
     const FAKE_CONTEXT = 'canvas context';

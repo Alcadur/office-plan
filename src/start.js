@@ -22,11 +22,6 @@ const firstRoom = roomFactory()
         .addPoint(P4.x, P4.y);
 
 canvas.addElement(firstRoom)
-      .addElement(roomFactory()
-      .addPoint(10, 10)
-      .addPoint(100, 10)
-      .addPoint(100, 100)
-      .addPoint(10, 100))
     .draw();
 //const p = P1;
 //canvas.context.moveTo(p.x, p.y);
