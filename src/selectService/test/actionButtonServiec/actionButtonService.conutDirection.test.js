@@ -13,35 +13,37 @@ describe('actionButtonService', function() {
         ({ actionButtonService, startPoint, endPoint } = beforeEachHelper());
     });
 
-    it('should calculate button direction (top) based on first and second path points', function() {
-        endPoint = { x: startPoint.x + 20, y: startPoint.y };
+    describe('countDirection', function() {
+        it('should calculate button direction (top) based on first and second path points', function() {
+            endPoint = { x: startPoint.x + 20, y: startPoint.y };
 
-        const result = actionButtonService.countDirection(startPoint, endPoint);
+            const result = actionButtonService.countDirection(startPoint, endPoint);
 
-        expect(result).to.be.eql(statics.TOP_DIRECTION);
-    });
+            expect(result).to.be.eql(statics.TOP_DIRECTION);
+        });
 
-    it('should calculate button direction (right) based on first and second path points', function() {
-        endPoint = { x: startPoint, y: startPoint.y + 20 };
+        it('should calculate button direction (right) based on first and second path points', function() {
+            endPoint = { x: startPoint, y: startPoint.y + 20 };
 
-        const result = actionButtonService.countDirection(startPoint, endPoint);
+            const result = actionButtonService.countDirection(startPoint, endPoint);
 
-        expect(result).to.be.eql(statics.RIGHT_DIRECTION);
-    });
+            expect(result).to.be.eql(statics.RIGHT_DIRECTION);
+        });
 
-    it('should calculate button direction (bottom) based on first and second path points', function() {
-        endPoint = { x: startPoint.x - 20, y: startPoint.y };
+        it('should calculate button direction (bottom) based on first and second path points', function() {
+            endPoint = { x: startPoint.x - 20, y: startPoint.y };
 
-        const result = actionButtonService.countDirection(startPoint, endPoint);
+            const result = actionButtonService.countDirection(startPoint, endPoint);
 
-        expect(result).to.be.eql(statics.BOTTOM_DIRECTION);
-    });
+            expect(result).to.be.eql(statics.BOTTOM_DIRECTION);
+        });
 
-    it('should calculate button direction (left) based on first and second path points', function() {
-        endPoint = { x: startPoint.x, y: startPoint.y - 20 };
+        it('should calculate button direction (left) based on first and second path points', function() {
+            endPoint = { x: startPoint.x, y: startPoint.y - 20 };
 
-        const result = actionButtonService.countDirection(startPoint, endPoint);
+            const result = actionButtonService.countDirection(startPoint, endPoint);
 
-        expect(result).to.be.eql(statics.LEFT_DIRECTION);
+            expect(result).to.be.eql(statics.LEFT_DIRECTION);
+        });
     });
 });

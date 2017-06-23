@@ -32,9 +32,9 @@ export default {
             throw new TypeError('Unsupported direction!!');
         }
 
-        return this[`count${bezierBorder}Bezier`](point);
+        return this[`countBezier${bezierBorder}`](point);
     },
-    [`count${BEZIER_BORDER.TOP_LEFT}Bezier`](point) {
+    [`countBezier${BEZIER_BORDER.TOP_LEFT}`](point) {
         const X_WITH_OFFSET = point.x + this.BEZIER_WIDTH;
         const Y_WITH_OFFSET = point.y - this.BEZIER_HEIGHT;
 
@@ -54,7 +54,7 @@ export default {
             }
         };
     },
-    [`count${BEZIER_BORDER.TOP_RIGHT}Bezier`](point) {
+    [`countBezier${BEZIER_BORDER.TOP_RIGHT}`](point) {
         const X_WITH_OFFSET = point.x - this.BEZIER_WIDTH;
         const Y_WITH_OFFSET = point.y - this.BEZIER_HEIGHT;
 
@@ -74,7 +74,7 @@ export default {
             }
         };
     },
-    [`count${BEZIER_BORDER.RIGHT_TOP}Bezier`](point) {
+    [`countBezier${BEZIER_BORDER.RIGHT_TOP}`](point) {
         return {
             start: point,
             firstBezierPoint: {
@@ -91,7 +91,7 @@ export default {
             }
         };
     },
-    [`count${BEZIER_BORDER.RIGHT_BOTTOM}Bezier`](point) {
+    [`countBezier${BEZIER_BORDER.RIGHT_BOTTOM}`](point) {
         return {
             start: point,
             firstBezierPoint: {
@@ -108,7 +108,7 @@ export default {
             }
         };
     },
-    [`count${BEZIER_BORDER.BOTTOM_LEFT}Bezier`](point) {
+    [`countBezier${BEZIER_BORDER.BOTTOM_LEFT}`](point) {
         return {
             start: point,
             firstBezierPoint: {
@@ -125,7 +125,7 @@ export default {
             }
         };
     },
-    [`count${BEZIER_BORDER.BOTTOM_RIGHT}Bezier`](point) {
+    [`countBezier${BEZIER_BORDER.BOTTOM_RIGHT}`](point) {
         return {
             start: point,
             firstBezierPoint: {
@@ -142,7 +142,7 @@ export default {
             }
         };
     },
-    [`count${BEZIER_BORDER.LEFT_TOP}Bezier`](point) {
+    [`countBezier${BEZIER_BORDER.LEFT_TOP}`](point) {
         return {
             start: point,
             firstBezierPoint: {
@@ -159,7 +159,7 @@ export default {
             }
         };
     },
-    [`count${BEZIER_BORDER.LEFT_BOTTOM}Bezier`](point) {
+    [`countBezier${BEZIER_BORDER.LEFT_BOTTOM}`](point) {
         return {
             start: point,
             firstBezierPoint: {
