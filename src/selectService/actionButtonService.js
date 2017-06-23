@@ -23,9 +23,7 @@ export default {
             return 'left';
         }
     },
-
     countBezierCoordination(point, bezierBorder) {
-
         const isDirectionNotExists = this.objectToArray(BEZIER_BORDER).indexOf(bezierBorder) === -1;
 
         if(isDirectionNotExists) {

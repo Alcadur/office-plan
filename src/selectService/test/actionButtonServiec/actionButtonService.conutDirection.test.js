@@ -1,6 +1,5 @@
-import _actionButtonService from '../../actionButtonService';
 import beforeEachHelper from './beforeEachHelper';
-import * as statics from './static'
+import * as statics from '../static'
 
 
 describe('actionButtonService', function() {
@@ -9,7 +8,6 @@ describe('actionButtonService', function() {
     let endPoint;
 
     beforeEach(function() {
-
         ({ actionButtonService, startPoint, endPoint } = beforeEachHelper());
     });
 

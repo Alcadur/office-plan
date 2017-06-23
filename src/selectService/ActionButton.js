@@ -1,8 +1,23 @@
-import actionButtonService from './actionButtonService';
+function getFirstBoardSiteByDirection(direction) {
+    if(direction === 'top' || direction === 'bottom') {
+        return `${direction}Left`;
+
+    }
+
+    return `${direction}Top`;
+}
+
+function getSecondBorderSiteByDirection(direction) {
+    if(direction === 'top' || direction === 'bottom') {
+        return `${direction}Right`;
+
+    }
+
+    return `${direction}Bottom`;
+}
 
 export default class ActionButton {
-
-    constructor(startPoint, endPoint) {
+    constructor(actionButtonService, startPoint, endPoint) {
         this.offset = {
             x: 20,
             y: 30
@@ -19,10 +34,11 @@ export default class ActionButton {
             }
         });
 
-        //this.direction = this._countDirection();
-        //this.firstBorderPoints = this._bezierCoordinatePoints(startPoint);
-        //this.secondBorderPoints = this._bezierCoordinatePoints(endPoint);
+        this.direction = actionButtonService.countDirection(startPoint, endPoint);
+        this.firstBorderPoints = actionButtonService.countBezierCoordination(startPoint, getFirstBoardSiteByDirection(this.direction));
+        this.secondBorderPoints = actionButtonService.countBezierCoordination(endPoint, getSecondBorderSiteByDirection(this.direction));
     }
+
 
 
     draw() {

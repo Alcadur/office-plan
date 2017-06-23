@@ -13,3 +13,8 @@ const HP4 = { x: 0, y: 0 };
 const HP5 = { x: 0, y: 0 };
 const HP6 = { x: 0, y: 0 };
 export const hexagon = helpers.getShapeMock([HP1, HP2, HP3, HP4, HP5, HP6]);
+
+export const TOP_DIRECTION = 'top';
+export const RIGHT_DIRECTION = 'right';
+export const BOTTOM_DIRECTION = 'bottom';
+export const LEFT_DIRECTION = 'left';
