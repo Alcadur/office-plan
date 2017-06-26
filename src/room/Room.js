@@ -22,6 +22,10 @@ export default class Room {
         return this;
     }
 
+    getPoint(pointIndex) {
+        return this.shape.path[pointIndex];
+    }
+
     drawShape(context) {
         this.shape.draw(context);
     }

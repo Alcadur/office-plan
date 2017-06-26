@@ -27,6 +27,7 @@ export function getShapeMock(path = []) {
 export function drawableObjectFactory() {
     return {
         draw: sinon.stub(),
-        drawShape: sinon.stub()
+        drawShape: sinon.stub(),
+        getPoint: sinon.stub()
     };
 }

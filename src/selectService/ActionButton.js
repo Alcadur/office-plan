@@ -52,9 +52,6 @@ export default class ActionButton {
 
     draw(context) {
         this.drawShape(context);
-        //context.lineWidth = 3;
-        //context.strokeStyle = 'red';
-        //context.fillStyle = 'red';
         context.stroke();
         context.fill();
     }
@@ -62,13 +59,13 @@ export default class ActionButton {
     drawShape(context) {
         context.beginPath();
         context.moveTo(this.start.x, this.start.y);
-        context.bezierCurveTo(...this._splitToBeziertCoverToParameters(this.firstBorderPoints));
+        context.bezierCurveTo(...this._splitToBezierCoverToParameters(this.firstBorderPoints));
         context.lineTo(this.secondBorderPoints.start.x, this.secondBorderPoints.start.y);
-        context.bezierCurveTo(...this._splitToBeziertCoverToParameters(this.secondBorderPoints));
+        context.bezierCurveTo(...this._splitToBezierCoverToParameters(this.secondBorderPoints));
         context.closePath();
     }
 
-    _splitToBeziertCoverToParameters(borderPoint) {
+    _splitToBezierCoverToParameters(borderPoint) {
         return [borderPoint.firstBezierPoint.x, borderPoint.firstBezierPoint.y, borderPoint.secondBezierPoint.x, borderPoint.secondBezierPoint.y, borderPoint.end.x, borderPoint.end.y]
     }
 }

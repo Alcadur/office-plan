@@ -10,13 +10,22 @@ describe('ActionButton', function() {
     });
 
     describe('draw', function() {
-        const LINE_WIDTH = 5;
-
         it('should draw button shape', function() {
            actionButton.draw(canvasContext);
 
            expect(actionButton.drawShape).to.have.been.calledWith(canvasContext);
         });
 
+        it('should stroke button shape', function() {
+            actionButton.draw(canvasContext);
+
+            expect(canvasContext.stroke).to.have.been.called;
+        });
+
+        it('should fill button shape', function() {
+            actionButton.draw(canvasContext);
+
+            expect(canvasContext.fill).to.have.been.called;
+        });
     });
 });

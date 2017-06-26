@@ -13,7 +13,7 @@ const P4 = { x: HALF_WINDOW_WIDTH - HALF_START_WIDTH, y: HALF_WINDOW_HEIGHT + HA
 const canvas = new Canvas('#plan');
 canvas.fitToWindow();
 
-selectedService.setup(canvas.context);
+selectedService.setup({ canvasContext: canvas.context });
 
 const firstRoom = roomFactory()
         .addPoint(P1.x, P1.y)
@@ -23,15 +23,6 @@ const firstRoom = roomFactory()
 
 canvas.addElement(firstRoom)
     .draw();
-//const p = P1;
-//canvas.context.moveTo(p.x, p.y);
-//canvas.context.bezierCurveTo(p.x + 20, p.y, p.x, p.y - 20, p.x + 20, p.y - 20);
-//canvas.context.lineWidth = 5;
-//canvas.context.strokeStyle = 'red';
-//canvas.context.stroke();
-//canvas.node.addEventListener('mousedown', function(event) {
-//    console.log(event);
-//});
 
 canvas.node.addEventListener('click', function(event) {
     canvas.draw();

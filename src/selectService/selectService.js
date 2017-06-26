@@ -1,7 +1,8 @@
 import actionButtonFactory from './actionButtonFactory';
 
-export default {
+export const selectService = {
     context: null,
+    actionsButtons: [],
     strokeColor: '#ffc601',
     fillColor: '#ad7e01',
     selectedElement: null,
@@ -16,8 +17,8 @@ export default {
 
         element.drawShape(this.context);
         this._drawObjectSelectLayer();
-        this._drawAddButtons();
-
+        this.actionsButtons = this._createAddButtons();
+        this._drawButtons();
     },
     _drawObjectSelectLayer() {
         const context = this.context;
@@ -28,15 +29,30 @@ export default {
         context.fillStyle = this.fillColor;
         context.fill();
     },
-    _drawAddButtons() {
-        actionButtonFactory(this.selectedElement.shape.get(0), this.selectedElement.shape.get(1)).draw(this.context);
-        actionButtonFactory(this.selectedElement.shape.get(1), this.selectedElement.shape.get(2)).draw(this.context);
-        actionButtonFactory(this.selectedElement.shape.get(2), this.selectedElement.shape.get(3)).draw(this.context);
-        actionButtonFactory(this.selectedElement.shape.get(3), this.selectedElement.shape.get(0)).draw(this.context);
+    _createAddButtons() {
+        const actionButtonFactory = this.actionButtonFactory;
+        const element = this.selectedElement;
+
+        const topButton = actionButtonFactory(element.getPoint(0), element.getPoint(1));
+        const rightButton = actionButtonFactory(element.getPoint(1), element.getPoint(2));
+        const bottomButton = actionButtonFactory(element.getPoint(2), element.getPoint(3));
+        const leftButton = actionButtonFactory(element.getPoint(3), element.getPoint(0));
+
+        return [topButton, rightButton, bottomButton, leftButton];
     },
-    setup(context) {
-        this.context = context;
+    _drawButtons() {
+        this.actionsButtons.forEach((button) => button.draw(this.context));
+    },
+    setup({
+        canvasContext = this.context,
+        actionButtonFactory = this.actionButtonFactory
+    } = {}) {
+        this.context = canvasContext;
+        this.actionButtonFactory = actionButtonFactory;
 
         return this;
     }
-}
+};
+
+
+export default selectService.setup({ actionButtonFactory });
