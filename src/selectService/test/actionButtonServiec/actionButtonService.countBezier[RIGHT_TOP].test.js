@@ -34,8 +34,8 @@ describe('actionButtonService', function() {
         it('should count end bezier coordination point for first (top) border for right direction', function() {
             const result = actionButtonService.countBezierCoordination(startPoint, BEZIER_BORDER.RIGHT_TOP);
 
-            expect(result.end.x).to.be.equal(startPoint.x + actionButtonService.BEZIER_WIDTH, 'x');
-            expect(result.end.y).to.be.equal(startPoint.y + actionButtonService.BEZIER_HEIGHT, 'y');
+            expect(result.end.x).to.be.equal(startPoint.x + actionButtonService.BEZIER_HEIGHT, 'x');
+            expect(result.end.y).to.be.equal(startPoint.y + actionButtonService.BEZIER_WIDTH, 'y');
         });
     });
 });

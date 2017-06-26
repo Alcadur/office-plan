@@ -72,7 +72,7 @@ describe('ActionButton', function() {
             actionButton = new ActionButton(actionButtonService, startPoint, endPoint);
 
             expect(actionButton.firstBorderPoints).to.be.eql(bezierCoordination);
-            expect(actionButtonService.countBezierCoordination).to.have.been.calledWith(startPoint, `${statics.LEFT_DIRECTION}Top`);
+            expect(actionButtonService.countBezierCoordination).to.have.been.calledWith(startPoint, `${statics.LEFT_DIRECTION}Bottom`);
         });
 
         it('should generate second bezier border base on end point for vertical button', function() {
@@ -83,7 +83,7 @@ describe('ActionButton', function() {
             actionButton = new ActionButton(actionButtonService, startPoint, endPoint);
 
             expect(actionButton.secondBorderPoints).to.be.eql(bezierCoordination);
-            expect(actionButtonService.countBezierCoordination).to.have.been.calledWith(endPoint, `${statics.LEFT_DIRECTION}Bottom`);
+            expect(actionButtonService.countBezierCoordination).to.have.been.calledWith(endPoint, `${statics.LEFT_DIRECTION}Top`);
         });
     });
 });

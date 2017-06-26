@@ -1,6 +1,7 @@
 import sinon from 'sinon';
 import _actionButtonService from '../../actionButtonService';
 import ActionButton from '../../ActionButton';
+import * as helpers from '../../../testHelpers';
 
 export default function() {
     const startPoint = { x: 10, y: 10 };
@@ -11,6 +12,7 @@ export default function() {
         startPoint,
         endPoint,
         actionButton: new ActionButton(actionButtonService, startPoint, endPoint),
-        actionButtonService
+        actionButtonService,
+        canvasContext: sinon.stub(helpers.getCanvasContext())
     }
 }

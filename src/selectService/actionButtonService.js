@@ -57,19 +57,19 @@ export default {
         const Y_WITH_OFFSET = point.y - this.BEZIER_HEIGHT;
 
         return {
-            start: point,
-            firstBezierPoint: {
+            start: {
                 x: X_WITH_OFFSET,
-                y: point.y
+                y: Y_WITH_OFFSET
             },
-            secondBezierPoint: {
+            firstBezierPoint: {
                 x: point.x,
                 y: Y_WITH_OFFSET
             },
-            end: {
+            secondBezierPoint: {
                 x: X_WITH_OFFSET,
-                y: Y_WITH_OFFSET
-            }
+                y: point.y
+            },
+            end: point
         };
     },
     [`countBezier${BEZIER_BORDER.RIGHT_TOP}`](point) {
@@ -84,43 +84,43 @@ export default {
                 y: point.y
             },
             end: {
-                x: point.y + this.BEZIER_WIDTH,
-                y: point.y + this.BEZIER_HEIGHT
+                x: point.x + this.BEZIER_HEIGHT,
+                y: point.y + this.BEZIER_WIDTH
             }
         };
     },
     [`countBezier${BEZIER_BORDER.RIGHT_BOTTOM}`](point) {
         return {
-            start: point,
-            firstBezierPoint: {
-                x: point.x,
+            start: {
+                x: point.x + this.BEZIER_HEIGHT,
                 y: point.y - this.BEZIER_WIDTH
             },
-            secondBezierPoint: {
+            firstBezierPoint: {
                 x: point.x + this.BEZIER_HEIGHT,
                 y: point.y
             },
-            end: {
-                x: point.x + this.BEZIER_HEIGHT,
+            secondBezierPoint: {
+                x: point.x,
                 y: point.y - this.BEZIER_WIDTH
-            }
+            },
+            end: point
         };
     },
     [`countBezier${BEZIER_BORDER.BOTTOM_LEFT}`](point) {
         return {
-            start: point,
-            firstBezierPoint: {
+            start: {
                 x: point.x + this.BEZIER_WIDTH,
-                y: point.y
+                y: point.y + this.BEZIER_HEIGHT
             },
-            secondBezierPoint: {
+            firstBezierPoint: {
                 x: point.x,
                 y: point.y + this.BEZIER_HEIGHT
             },
-            end: {
+            secondBezierPoint: {
                 x: point.x + this.BEZIER_WIDTH,
-                y: point.y + this.BEZIER_HEIGHT
-            }
+                y: point.y
+            },
+            end: point
         };
     },
     [`countBezier${BEZIER_BORDER.BOTTOM_RIGHT}`](point) {
@@ -142,19 +142,19 @@ export default {
     },
     [`countBezier${BEZIER_BORDER.LEFT_TOP}`](point) {
         return {
-            start: point,
-            firstBezierPoint: {
-                x: point.x,
+            start: {
+                x: point.x - this.BEZIER_HEIGHT,
                 y: point.y + this.BEZIER_WIDTH
             },
-            secondBezierPoint: {
+            firstBezierPoint: {
                 x: point.x - this.BEZIER_HEIGHT,
                 y: point.y
             },
-            end: {
-                x: point.x - this.BEZIER_HEIGHT,
+            secondBezierPoint: {
+                x: point.x,
                 y: point.y + this.BEZIER_WIDTH
-            }
+            },
+            end: point
         };
     },
     [`countBezier${BEZIER_BORDER.LEFT_BOTTOM}`](point) {

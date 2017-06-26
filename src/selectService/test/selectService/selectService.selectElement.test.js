@@ -78,52 +78,5 @@ describe('selectService', function() {
 
             expect(canvasContext.lineWidth).to.be.equal(FAKE_LINE_WIDTH);
         });
-        it('should begin canvas context path', function() {
-            selectService.selectElement(selectedElement);
-
-            expect(canvasContext.beginPath).to.have.been.called;
-        });
-        it('should move draw point to first shape point', function() {
-            const firstPoint = square.get(0);
-            selectService.selectElement(selectedElement);
-
-            expect(canvasContext.moveTo).to.have.been.calledWith(firstPoint.x, firstPoint.y);
-        });
-        /**
-         * P1         P2
-         * *----------*
-         * |          |
-         * *----------*
-         * P4         P3
-         */
-        it('should draw bezier to P1x + x offset and P1y - y offset', function() {
-            const firstPoint = square.get(0);
-            const x = firstPoint.x;
-            const y = firstPoint.y;
-
-            selectService.selectElement(selectedElement);
-
-            expect(canvasContext.bezierCurveTo).to.have.been.calledWith(x + xOffset, y, x, y - yOffset, x + xOffset, y - yOffset )
-        });
-
-        it('should draw line to P2x - x offset and P2y - y offset', function() {
-            const P2 = square.get(1);
-            const x = P2.x;
-            const y = P2.y;
-
-            selectService.selectElement(selectedElement);
-
-            expect(canvasContext.lineTo).to.have.been.calledAfter(canvasContext.bezierCurveTo)
-                .and.calledWith(x - xOffset, y - yOffset);
-        });
-        /**
-         *   P1    P2
-         *     *--*
-         *    /    \
-         * P6*     *P3
-         *   \    /
-         *    *--*
-         *  P5    P4
-         */
     });
 });

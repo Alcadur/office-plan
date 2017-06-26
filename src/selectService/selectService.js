@@ -1,3 +1,5 @@
+import actionButtonFactory from './actionButtonFactory';
+
 export default {
     context: null,
     strokeColor: '#ffc601',
@@ -27,28 +29,10 @@ export default {
         context.fill();
     },
     _drawAddButtons() {
-        const context = this.context;
-        const startPoint = this.selectedElement.shape.get(0);
-        const startX = startPoint.x;
-        const startY = startPoint.y;
-        const endPoint = this.selectedElement.shape.get(1);
-        const endX = endPoint.x;
-        const endY = endPoint.y;
-
-        context.beginPath();
-        context.moveTo(startX, startY);
-
-        context.bezierCurveTo(startX + this.ACTION_BUTTON_X_OFFSET,
-            startY,
-            startX,
-            startY - this.ACTION_BUTTON_Y_OFFSET,
-            startX + this.ACTION_BUTTON_X_OFFSET,
-            startY - this.ACTION_BUTTON_Y_OFFSET);
-
-        context.lineTo(endX - this.ACTION_BUTTON_X_OFFSET, endY - this.ACTION_BUTTON_Y_OFFSET);
-        //context.closePath()
-        //context.strokeStyle = 'red';
-        //context.stroke();
+        actionButtonFactory(this.selectedElement.shape.get(0), this.selectedElement.shape.get(1)).draw(this.context);
+        actionButtonFactory(this.selectedElement.shape.get(1), this.selectedElement.shape.get(2)).draw(this.context);
+        actionButtonFactory(this.selectedElement.shape.get(2), this.selectedElement.shape.get(3)).draw(this.context);
+        actionButtonFactory(this.selectedElement.shape.get(3), this.selectedElement.shape.get(0)).draw(this.context);
     },
     setup(context) {
         this.context = context;
